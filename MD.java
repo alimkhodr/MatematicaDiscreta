@@ -397,8 +397,7 @@ public class MD {
             System.out.println("O resultado da função f(x) = x^2 + 3x - 7 é: " + resultado);
         }
     
-        public static double calcularFuncao(double x) {
-            // Aqui está um exemplo de função: f(x) = x^2 + 3x - 7
+        public static double calcularFuncao(double x) {
             return Math.pow(x, 2) + (3 * x) - 7;
         }
 
