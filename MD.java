@@ -16,6 +16,11 @@ public class MD {
             System.out.print("|3. Fecho transitivo");
             System.out.print("|4. Fibonacci");
             System.out.print("|5. Permutações");
+            System.out.print("|6. Conjunto");
+            System.out.print("|7. Lógicas");
+            System.out.print("|8. Primos");
+            System.out.print("|9. Função");
+            System.out.print("|10. Paridade");
             System.out.println("|0. Sair|");
             System.out.print("-> ");
 
@@ -35,6 +40,21 @@ public class MD {
                     break;
                 case 5:
                     Ex5(args);
+                    break;
+                case 6:
+                    Ex6(args);
+                    break;
+                case 7:
+                    Ex7(args);
+                    break;
+                case 8:
+                    Ex8(args);
+                    break;
+                case 9:
+                    Ex9(args);
+                    break;
+                case 10:
+                    Ex10(args);
                     break;
                 case 0:
                     System.out.println("Saindo do programa.");
@@ -230,4 +250,173 @@ public class MD {
             Collections.swap(elementos, i, indice);
         }
     }
+
+    public static void Ex6(String[] args) {
+        Set<Integer> conjuntoA = new HashSet<>();
+        Set<Integer> conjuntoB = new HashSet<>();
+
+        conjuntoA.add(1);
+        conjuntoA.add(2);
+        conjuntoA.add(3);
+        conjuntoA.add(4);
+
+        conjuntoB.add(3);
+        conjuntoB.add(4);
+        conjuntoB.add(5);
+        conjuntoB.add(6);
+
+        System.out.println("Conjunto A: " + conjuntoA);
+        System.out.println("Conjunto B: " + conjuntoB);
+
+        Set<Integer> uniao = new HashSet<>(conjuntoA);
+        uniao.addAll(conjuntoB);
+        System.out.println("União: " + uniao);
+
+        Set<Integer> intersecao = new HashSet<>(conjuntoA);
+        intersecao.retainAll(conjuntoB);
+        System.out.println("Interseção: " + intersecao);
+
+        Set<Integer> diferenca = new HashSet<>(conjuntoA);
+        diferenca.removeAll(conjuntoB);
+        System.out.println("Diferença A - B: " + diferenca);
+
+        boolean subconjunto = conjuntoA.containsAll(conjuntoB);
+        System.out.println("Conjunto B é subconjunto de A: " + subconjunto);
+    }
+
+    public static void Ex7(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite o valor de verdade para P (true/false): ");
+        boolean p;
+        while (true) {
+            String input = scanner.next();
+
+            if (input.equalsIgnoreCase("true")) {
+                p = true;
+                break;
+            } else if (input.equalsIgnoreCase("false")) {
+                p = false;
+                break;
+            } else {
+                System.out.println("Entrada inválida. Digite 'true' ou 'false'.");
+            }
+        }
+
+        System.out.print("Digite o valor de verdade para Q (true/false): ");
+        boolean q;
+        while (true) {
+            String input = scanner.next();
+            if (input.equalsIgnoreCase("true")) {
+                q = true;
+                break;
+            } else if (input.equalsIgnoreCase("false")) {
+                q = false;
+                break;
+            } else {
+                System.out.println("Entrada inválida. Digite 'true' ou 'false'.");
+            }
+        }
+
+        int escolha;
+        while (true) {
+            System.out.println("Escolha a operação lógica:");
+            System.out.println("1. Negacão (~)");
+            System.out.println("2. Conjunção (˄)");
+            System.out.println("3. Disjunção (˅)");
+            System.out.println("4. Condicional (→)");
+            System.out.println("5. Bicondicional (↔)");
+
+            if (scanner.hasNextInt()) {
+                escolha = scanner.nextInt();
+                if (escolha >= 1 && escolha <= 5) {
+                    break;
+                } else {
+                    System.out.println("Escolha inválida. Digite um número de 1 a 5.");
+                }
+            } else {
+                System.out.println("Entrada inválida. Digite um número de 1 a 5.");
+                scanner.next();
+            }
+        }
+
+        switch (escolha) {
+            case 1:
+                System.out.println("Negação de P: " + !p);
+                System.out.println("Negação de Q: " + !q);
+                break;
+            case 2:
+                System.out.println("Conjunção de P e Q: " + (p && q));
+                break;
+            case 3:
+                System.out.println("Disjunção de P e Q: " + (p || q));
+                break;
+            case 4:
+                System.out.println("Condicional de P para Q: " + (!p || q));
+                break;
+            case 5:
+                System.out.println("Bicondicional de P para Q: " + (p == q));
+                break;
+            default:
+                System.out.println("Opção inválida.");
+        }
+    }
+
+    public static void Ex8(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite um número inteiro positivo: ");
+        int numero = scanner.nextInt();
+
+        if (verificarPrimo(numero)) {
+            System.out.println(numero + " é um número primo.");
+        } else {
+            System.out.println(numero + " não é um número primo.");
+        }
+    }
+
+    public static boolean verificarPrimo(int numero) {
+        if (numero <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(numero); i++) {
+            if (numero % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void Ex9(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+    
+            System.out.print("Digite um valor para x: ");
+            double x = scanner.nextDouble();
+    
+            double resultado = calcularFuncao(x);
+            System.out.println("O resultado da função f(x) = x^2 + 3x - 7 é: " + resultado);
+        }
+    
+        public static double calcularFuncao(double x) {
+            // Aqui está um exemplo de função: f(x) = x^2 + 3x - 7
+            return Math.pow(x, 2) + (3 * x) - 7;
+        }
+
+    public static void Ex10(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite um número inteiro para verificar a paridade: ");
+        int numero = scanner.nextInt();
+
+        if (verificarParidade(numero)) {
+            System.out.println("O número " + numero + " é par.");
+        } else {
+            System.out.println("O número " + numero + " é ímpar.");
+        }
+    }
+
+    public static boolean verificarParidade(int numero) {
+        return numero % 2 == 0;
+    }
+
 }
